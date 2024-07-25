@@ -1,11 +1,12 @@
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import antlr.*;
 import java.io.*;
 import java.util.*;
 
-public class MainImp {
+public class Main {
     static HashSet<String> varsDecl;
-    public static boolean verifique(ImpParser.ComContext com) {
+    public static boolean verifique(ImpParser.CommandContext com) {
       varsDecl = new HashSet<String>();
       ImpBaseVisitor<Boolean> visitor = new ImpBaseVisitor<Boolean>() {
             public Boolean visitConst(ImpParser.ConstContext ctx) { 
@@ -70,7 +71,7 @@ public class MainImp {
       return com.accept(visitor);
 
    }
-   public static int avalieVisitor(ImpParser.ComContext exp) {
+   public static int avalieVisitor(ImpParser.CommandContext exp) {
       HashMap<String, Integer> memoria = new HashMap<String,Integer>();
 
       ImpBaseVisitor<Integer> visitor = new ImpBaseVisitor<Integer>() {
@@ -140,11 +141,11 @@ public class MainImp {
       return exp.accept(visitor);
    }   
    public static void main(String args[]) throws Exception {
-         CharStream input = CharStreams.fromFileName(args[0]);
+         var input = CharStreams.fromFileName(args[0]);
          ImpLexer lexer = new ImpLexer(input);
          CommonTokenStream tokens = new CommonTokenStream(lexer);
          ImpParser parser = new ImpParser(tokens);
-         ImpParser.ComContext t = parser.com();
+         ImpParser.CommandContext t = parser.command();
          if (t==null) {
             System.out.println("T é nulo!!!!!");
             System.exit(0);

@@ -1,7 +1,7 @@
 grammar Imp;
 
 // Análise Sintática
-start : command EOF ;
+start : (command)+ EOF ;
 
 //Comandos
 command : 'print' '(' e=expression ')' ';' #Print
@@ -9,7 +9,7 @@ command : 'print' '(' e=expression ')' ';' #Print
     | '{' command* '}' #Block
     | 'if'  '(' e=expression ')' cTrue=command 'else' cFalse=command #If
     | 'while' '(' e=expression ')' cRep=command #While
-    | type=TYPE name=VAR '=' vInic=expression ';' #Dec
+    | 'int' name=VAR '=' vInic=expression ';' #Dec
     ;
 
 //Expressoes
