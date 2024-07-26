@@ -1,0 +1,32 @@
+var a = 10;
+a = 1;
+var b = a;
+
+func f() {
+  log a;
+}
+
+func d(a, b, v) {
+  log a;
+}
+
+if (a > 1) {
+  log "maio";
+} else {
+  log "meno";
+}
+
+if ( a < 12 && b > 13)
+  log "ok";
+
+while(0) {
+  log "a";
+}
+
+emit "asasd";
+emit "asasd" -> [1,2,3];
+
+listener "asd" -> f;
+listener "asdas" -> d;
+
+d(a);
